@@ -9,7 +9,35 @@ pair.1;
 
 let couple: (u64, char) = (90, 'a');
 
-let smallest = std::cmp::min(2,9);
+let smallest_1 = std::cmp::min(2, 9);
+
+use std::cmp::min;
+let smallest_2 = min(2, 9);
+
+use std::cmp::{min, max};
+use std::{cmp::min, cmp::max};
+use std::cmp::*;
+
+let a = "tino".len();
+let b = std::len("tino");
+
+let v1 = Vec::new();
+let v2 = std::vec::Vec::new();
+
+use std::prelude::v1::*;
+
+struct items {
+    x: f64,
+    y: f64,
+}
+
+let s = Vec2 {x: 1.0, y: 2.0};
+let s2 = Vec2 {y: 4.0, x: 3.0};
+
+let s3 = Vec2 {
+    x: 10,0,
+    ..s2
+}
 
 fn one_number_1() -> i32 {
     5
