@@ -8,3 +8,5 @@ pair.0;
 pair.1;
 
 let couple: (u64, char) = (90, 'a');
+
+let smallest = std::cmp::min(2,9);
