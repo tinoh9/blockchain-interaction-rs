@@ -39,6 +39,8 @@ let s3 = Vec2 {
     ..s2
 }
 
+let s4 = Vec2 {..s3};
+
 fn one_number_1() -> i32 {
     5
 }
