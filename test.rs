@@ -76,7 +76,7 @@ fn main_swap() {
     println!("{} {}", x, y);
 }
 
-fn main_con() {
+fn main_cond() {
     let x = 100;
     if x < 100 {
         println!("x is less than {}", x);
@@ -99,3 +99,40 @@ fn main_loop() {
     println!("{}", x);
 }
 
+fn main_while() {
+    let mut x = 0;
+    while x < 50 {
+        x += 1;
+    }
+    println!("{}", x);
+}
+
+fn main_iter() {
+    for x in 0..10 {
+        println!("{}", x);
+    }
+    for x in 0..=10 {
+        println!("{}", x);
+    }
+}
+
+ fn main_match() {
+    let x = 100;
+    match x {
+        0 => {
+            println!("found nothing");
+        }
+        5 | 10 => {
+            println!("found 5 or 10");
+        }
+        5..=10 => {
+            println!("found number 5 to 10 inclusively")
+        }
+        match_num @ 5..=100 => {
+            println!("found {} number from 5 to 100 inclusively", match_num);
+        }
+        _ => {
+            println!("found something else");
+        }
+    }
+ }
