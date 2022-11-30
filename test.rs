@@ -63,3 +63,15 @@ fn dice_roll_2() -> i32 {
         false => 2
     }
 }
+
+fn swap(a: i32, b: i32) -> (i32, i32) {
+    return (b, a);
+}
+
+fn main_swap() {
+    let result = swap(456, 789);
+    println!("{} {}", result.0, result.1);
+
+    let (x, y) = swap(result.0, result.1);
+    println!("{} {}", x, y);
+}
