@@ -136,3 +136,40 @@ fn main_iter() {
         }
     }
  }
+
+ fn main_loop_break() {
+    let mut x = 0;
+    let a = loop {
+        x += 1;
+        if x == 50 {
+            break "got 50";
+        }
+    };
+    println!("the loop: {}", a);
+ }
+
+fn test_1() -> i32 {
+    let a = 60;
+    let b = if a < 60 {1} else {-1};
+    println!("{}", b);
+
+    let food = "pizza";
+    let result = match food {
+        "pizza" => {"is the pizza"},
+        _ => {"is not the pizza"},
+    };
+    println!("{}", result);
+
+    let b = {
+        let x1 = 5;
+        let x2 = 10;
+        x1 + x2
+    };
+    println!("{}", b);
+
+    b + 10
+}
+
+fn main_test_1() {
+    println!("{}", test_1());
+}
