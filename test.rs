@@ -75,3 +75,27 @@ fn main_swap() {
     let (x, y) = swap(result.0, result.1);
     println!("{} {}", x, y);
 }
+
+fn main_con() {
+    let x = 100;
+    if x < 100 {
+        println!("x is less than {}", x);
+    } else if x == 100 {
+        println!("x is {}", x);
+    } else {
+        println!("x is greater than {}", x);
+    }
+    
+}
+
+fn main_loop() {
+    let mut x = 0;
+    loop {
+        x += 1 ;
+        if x == 50 {
+            break;
+        }
+    }
+    println!("{}", x);
+}
+
