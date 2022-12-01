@@ -174,7 +174,7 @@ fn main_test_1() {
     println!("{}", test_1());
 }
 
-struct CarComponent {
+struct CarSpec {
     model: String,
     wheels: i32,
     seats: i32,
@@ -182,14 +182,14 @@ struct CarComponent {
 }
 
 fn main_car() {
-    let toyota = CarComponent {
+    let toyota = CarSpec {
         model: String::from("Camry"),
         wheels: 4,
         seats: 4,
         colour: String::from("black"),
     };
 
-    let honda = CarComponent {
+    let honda = CarSpec {
         model: String::from("Civic"),
         wheels: 4,
         seats: 4,
