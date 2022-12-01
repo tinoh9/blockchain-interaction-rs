@@ -173,7 +173,7 @@ fn test_1() -> i32 {
 fn main_test_1() {
     println!("{}", test_1());
 }
-
+////
 struct CarSpec {
     model: String,
     wheels: i32,
@@ -204,5 +204,22 @@ fn main_car() {
     println!(
         "My brother has a {} model with {} wheels, {} seats and {} colour",
         honda.model, honda.wheels, honda.seats, honda.colour
+    );
+}
+////
+struct CarSpecAlt(String, i32, i32, String);
+
+fn main_car_1() {
+    let toyota = CarSpecAlt("Camry".to_string(), 4, 4, "black".to_string());
+    let honda = CarSpecAlt("Civic".to_string(), 4, 4, "white".to_string());
+
+    println!(
+        "I have a {} model with {} wheels, {} seats and {} colour",
+        toyota.0, toyota.1, toyota.2, toyota.3
+    );
+
+    println!(
+        "My brother has a {} model with {} wheels, {} seats and {} colour",
+        honda.0, honda.1, honda.2, honda.3
     );
 }
