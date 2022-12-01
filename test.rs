@@ -202,7 +202,7 @@ fn main_car() {
     );
 
     println!(
-        "My brother have a {} model with {} wheels, {} seats and {} colour",
+        "My brother has a {} model with {} wheels, {} seats and {} colour",
         honda.model, honda.wheels, honda.seats, honda.colour
     );
 }
