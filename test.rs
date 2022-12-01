@@ -173,3 +173,36 @@ fn test_1() -> i32 {
 fn main_test_1() {
     println!("{}", test_1());
 }
+
+struct CarComponent {
+    model: String,
+    wheels: i32,
+    seats: i32,
+    colour: String,
+}
+
+fn main_car() {
+    let toyota = CarComponent {
+        model: String::from("Camry"),
+        wheels: 4,
+        seats: 4,
+        colour: String::from("black"),
+    };
+
+    let honda = CarComponent {
+        model: String::from("Civic"),
+        wheels: 4,
+        seats: 4,
+        colour: String::from("white"),
+    };
+
+    println!(
+        "I have a {} model with {} wheels, {} seats and {} colour",
+        toyota.model, toyota.wheels, toyota.seats, toyota.colour
+    );
+
+    println!(
+        "My brother have a {} model with {} wheels, {} seats and {} colour",
+        honda.model, honda.wheels, honda.seats, honda.colour
+    );
+}
