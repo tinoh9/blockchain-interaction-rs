@@ -223,3 +223,21 @@ fn main_car_1() {
         honda.0, honda.1, honda.2, honda.3
     );
 }
+////
+struct CoinBag<T> {
+    item: T,
+}
+
+fn main_gene() {
+    let red_coin = CoinBag::<i32> {item: 10};
+    let blue_coin = CoinBag::<i32> {item: 20};
+    let red_coin_name = CoinBag::<String> {item: "abc".to_string()};
+    let blue_coin_name = CoinBag::<String> {item: "def".to_string()};
+    let red_coin_size = CoinBag::<f64> {item: 5.0};
+    let blue_coin_size = CoinBag::<f64> {item: 10.0};
+    println!(
+        "The Coin Bag has {} red coin & {} blue coin, their names are {} & {}, and they have the size of {} & {} respectively",
+        red_coin.item, blue_coin.item, red_coin_name.item, blue_coin_name.item, red_coin_size.item, blue_coin_size.item
+    )
+}
+
