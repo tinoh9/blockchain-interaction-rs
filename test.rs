@@ -240,4 +240,32 @@ fn main_gene() {
         red_coin.item, blue_coin.item, red_coin_name.item, blue_coin_name.item, red_coin_size.item, blue_coin_size.item
     )
 }
+////
+struct BookShelf<T> {
+    book: Option<T>,
+}
 
+fn main_opt() {
+    let yellow_book = BookShelf::<i32> {
+        book: Some(10)
+    };
+    if yellow_book.book.is_some() {
+        println!("The bookshelf has yellow books")
+    } else {
+        println!("The bookshelf has none yellow books")
+    }
+
+    let yellow_book = BookShelf::<i32> {
+        book: None
+    };
+    if yellow_book.book.is_none() {
+        println!("The bookshelf has none yellow books")
+    } else {
+        println!("The bookshelf has yellow books")
+    }
+
+    match yellow_book.book {
+        Some(v) => println!("There is {} yellow books in the bookshelf", v),
+        None => println!("There is none yellow books in the bookshelf"),
+    }
+}
