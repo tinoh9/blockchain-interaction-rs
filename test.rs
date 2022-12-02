@@ -269,3 +269,20 @@ fn main_opt() {
         None => println!("There is none yellow books in the bookshelf"),
     }
 }
+////
+fn result_fail(a:i32) -> Result<String, String> {
+    if a == 100 {
+        Ok("100%".to_string())
+    } else {
+        Err(String::from("This is not correct"))
+    }
+}
+
+fn main_res() {
+    let result = result_fail(50);
+
+    match result {
+        Ok(v) => println!("Match: {}", v),
+        Err(e) => println!("Error: {}", e),
+    }
+}
