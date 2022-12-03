@@ -300,3 +300,21 @@ fn main_error_handling() -> Result<(), String> {
     println!("found: {}", result);
     Ok(())
 } 
+////
+fn ugly_option(a: i32) -> Result<i32, String> {
+    if a == -50 {
+        Ok(a)
+    } else {
+        Err("This is incorrect".to_string())
+    }
+}
+
+fn main_ugly_option() -> Result<(), String> {
+    let result = ugly_option(-50).unwrap();
+    println!("found: {}", result);
+
+    let result = ugly_option(-40).unwrap();
+    println!("found: {}", result);
+
+    Ok(())
+}
