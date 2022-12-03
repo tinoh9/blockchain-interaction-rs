@@ -318,3 +318,20 @@ fn main_ugly_option() -> Result<(), String> {
 
     Ok(())
 }
+////
+fn main_vector() {
+    let mut vector_1 = Vec::<i32>::new();
+        vector_1.push(1);
+        vector_1.push(2);
+        vector_1.push(3);
+
+    let mut vector_2 = Vec::new();
+        vector_2.push(1.0);
+        vector_2.push(2.0);
+        vector_2.push(3.0);
+
+    let string_vector = vec!["Hi".to_string(), "Good".to_string(), "Morning!".to_string()];
+    for word in string_vector.iter() {
+        println!("{}", word);
+    }
+}
