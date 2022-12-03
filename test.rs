@@ -286,3 +286,17 @@ fn main_res() {
         Err(e) => println!("Error: {}", e),
     }
 }
+////
+fn error_handling(a: i32) -> Result<i32, String> {
+    if a == 50 {
+        Ok(a)
+    } else {
+        Err("This is incorrect".to_string())
+    }
+}
+
+fn main_error_handling() -> Result<(), String> {
+    let result = error_handling(10)?;
+    println!("found: {}", result);
+    Ok(())
+} 
