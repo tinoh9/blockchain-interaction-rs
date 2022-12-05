@@ -335,3 +335,16 @@ fn main_vector() {
         println!("{}", word);
     }
 }
+////
+struct Fruit {
+    fruit: String,
+}
+
+struct Table {
+    basket: Fruit,
+}
+
+fn main_drop() {
+    let table = Table {basket: Fruit {fruit: "apple".to_string()}};
+    println!("{}", table.basket.fruit);
+}
