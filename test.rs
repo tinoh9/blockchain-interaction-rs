@@ -357,7 +357,17 @@ fn owner(c: Car) {
     println!("{}", c.bmw);
 }
 
-fn main_transfer() {
+fn main_move() {
     let car = Car {bmw: "M3".to_string()};
     owner(car);
+}
+////
+struct Pen {
+    pen: i32,
+}
+
+fn main_borrow() {
+    let a = Pen {pen: 5};
+    let b = &a;
+    println!("{}", b.pen);
 }
