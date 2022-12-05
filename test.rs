@@ -348,3 +348,16 @@ fn main_drop() {
     let table = Table {basket: Fruit {fruit: "apple".to_string()}};
     println!("{}", table.basket.fruit);
 }
+////
+struct Car {
+    bmw: String,
+}
+
+fn owner(c: Car) {
+    println!("{}", c.bmw);
+}
+
+fn main_transfer() {
+    let car = Car {bmw: "M3".to_string()};
+    owner(car);
+}
