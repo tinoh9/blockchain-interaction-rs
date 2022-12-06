@@ -397,3 +397,10 @@ fn main_deref() {
     println!("{}", c);
     println!("{}", a);
 }
+////
+fn main_concat_join() {
+    let goodmorning = ["Good", " ", "Morning", "!"].concat();
+    let goodbye = ["Good", "Bye", "!"].join("_");
+    println!("{}", goodmorning);
+    println!("{}", goodbye);
+}
