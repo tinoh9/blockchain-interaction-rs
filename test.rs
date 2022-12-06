@@ -372,19 +372,28 @@ fn main_borrow() {
     println!("{}", b.pen);
 }
 ////
-struct Boat {
-    boat: String,
+struct Material {
+    material: String,
 }
 
-fn owner(a: Boat) {
-    println!("{}", a.boat);
+fn owner(a: Material) {
+    println!("{}", a.material);
 }
 
 fn main_mut_borrow() {
-    let mut b = Boat {boat: "wooden".to_string()};
+    let mut b = Material {material: "wood".to_string()};
     let a = &mut b;
-    a.boat = "steel".to_string();
-    println!("{}", b.boat);
-    b.boat = "glass".to_string();
+    a.material = "steel".to_string();
+    println!("{}", b.material);
+    b.material = "glass".to_string();
     owner(b);
+}
+////
+fn main_deref() {
+    let mut a = 50;
+    let b = &mut a;
+    let c = *b;
+    *b = 100;
+    println!("{}", c);
+    println!("{}", a);
 }
