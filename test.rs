@@ -371,3 +371,20 @@ fn main_borrow() {
     let b = &a;
     println!("{}", b.pen);
 }
+////
+struct Boat {
+    boat: String,
+}
+
+fn owner(a: Boat) {
+    println!("{}", a.boat);
+}
+
+fn main_mut_borrow() {
+    let mut b = Boat {boat: "wooden".to_string()};
+    let a = &mut b;
+    a.boat = "steel".to_string();
+    println!("{}", b.boat);
+    b.boat = "glass".to_string();
+    owner(b);
+}
