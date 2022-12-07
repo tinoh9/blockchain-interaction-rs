@@ -404,3 +404,18 @@ fn main_concat_join() {
     println!("{}", goodmorning);
     println!("{}", goodbye);
 }
+////
+struct Animal {
+    cat: u32,
+}
+
+impl Animal {
+    fn main_impl(&self) -> &u32 {
+        &self.cat
+    }
+}
+
+fn main_encap() {
+    let owner = Animal {cat: 5};
+    println!("{}", owner.main_impl());
+}
