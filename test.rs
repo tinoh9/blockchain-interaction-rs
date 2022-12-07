@@ -407,15 +407,16 @@ fn main_concat_join() {
 ////
 struct Animal {
     cat: u32,
+    pub dog: u32,
 }
 
 impl Animal {
-    fn main_impl(&self) -> &u32 {
+    pub fn main_pub_method(&self) -> &u32 {
         &self.cat
     }
 }
 
 fn main_encap() {
     let owner = Animal {cat: 5};
-    println!("{}", owner.main_impl());
+    println!("{}", owner.main_pub_method());
 }
