@@ -422,11 +422,10 @@ fn main_encap() {
 }
 ////
 use std::io;
-use rand::Rng;
-use rand::distributions::{Distribution, Standard};
+use rand::{Rng::distributions::{Distribution, Standard}};
 
 struct Alphabet {
-    x: char;
+    answer: char;
 }
 
 fn guess_alphabet() {
@@ -435,10 +434,10 @@ fn guess_alphabet() {
     let mut guess = String::new();
     impl Distribution<char> for Alphabet {
         fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> char {
-            *"abcdefghijklmnopqrstuvwxyz".choose(rng).unwrap() as char
+            "abcdefghijklmnopqrstuvwxyz".choose(rng).unwrap() as char
         }
     }
-    let answer = dis
+    let answer = 
     io::stdin().read_line =  (&mut guess).unwrap();
     println!("You guessed: {}", guess)
 }
