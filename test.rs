@@ -420,3 +420,13 @@ fn main_encap() {
     let owner = Animal {cat: 5};
     println!("{}", owner.main_pub_method());
 }
+////
+use std::io;
+
+fn guess_alphabet() {
+    println!("Welcome to the game");
+    println!("Please type any alphabet");
+    let mut x = String::new();
+    io::stdin().read_line =  (&mut x).unwrap();
+    println!("You guessed: {}", x)
+}
