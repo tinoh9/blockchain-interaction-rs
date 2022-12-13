@@ -420,7 +420,7 @@ fn main_encap() {
     let owner = Animal {cat: 5};
     println!("{}", owner.main_pub_method());
 }
-////
+//// INCOMPLETED
 use std::io;
 use rand::{Rng::distributions::{Distribution, Standard}};
 
@@ -445,4 +445,10 @@ fn guess_alphabet() {
     } else {
         println!("That's incorrect, please type another alphabet");
     }
+}
+////
+fn main_pointer() {
+    let x = -1.5;
+    let memory_location = &x as *const f64 as usize;
+    println!("X has the data of {}", memory_location);
 }
