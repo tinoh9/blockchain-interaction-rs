@@ -465,5 +465,5 @@ impl Animal {
 
 fn main() {
     let box_chicken = Box::new(Animal {chicken: 5});
-    println!("There are {} chicken in heap box", box_chicken.heap_chicken());
+    println!("There are {} chickens moved from the stack to the heap", box_chicken.heap_chicken());
 }
