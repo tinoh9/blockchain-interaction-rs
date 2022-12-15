@@ -452,3 +452,18 @@ fn main_pointer() {
     let memory_location = &x as *const f64 as usize;
     println!("X has the data of {}", memory_location);
 }
+////
+struct Animal {
+    chicken: i32
+}
+
+impl Animal {
+    fn heap_chicken(&self) -> &i32 {
+        &self.chicken
+    } 
+}
+
+fn main() {
+    let box_chicken = Box::new(Animal {chicken: 5});
+    println!("There are {} chicken in heap box", box_chicken.heap_chicken());
+}
