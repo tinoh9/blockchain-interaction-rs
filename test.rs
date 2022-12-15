@@ -454,11 +454,11 @@ fn main_pointer() {
 }
 ////
 struct Animal {
-    chicken: i32
+    chicken: u32
 }
 
 impl Animal {
-    fn heap_chicken(&self) -> &i32 {
+    fn heap_chicken(&self) -> &u32 {
         &self.chicken
     } 
 }
