@@ -467,3 +467,22 @@ fn main() {
     let box_chicken = Box::new(Animal {chicken: 5});
     println!("There are {} chickens moved from the stack to the heap", box_chicken.heap_chicken());
 }
+// Calculate an area of a triangle
+fn main() {
+    println!("Please enter the base of the triangle:");
+    let mut base = String::new();
+    std::io::stdin()
+        .read_line(&mut base)
+        .expect("Failed to read the number");
+    let base: f32 = base.trim().parse().expect("Please enter the number");
+
+    println!("Please enter the height of the triangle:");
+    let mut height = String::new();
+    std::io::stdin()
+        .read_line(&mut height)
+        .expect("Failed to read the number");
+    let height: f32 = height.trim().parse().expect("Please enter the number");
+
+    let area = (base * height) / 2.0;
+    println!("The area of the triangle is {}", area);
+}
