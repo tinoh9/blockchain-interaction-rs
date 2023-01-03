@@ -486,3 +486,91 @@ fn main() {
     let area: usize = (base * height) / 2;
     println!("The area of the triangle is {}", area);
 }
+// To-do list management
+struct Task {
+    title: String,
+    description: String,
+    completed: bool,
+}
+
+fn main() {
+    let mut tasks = Vec::new();
+
+    loop {
+        println!("1. Add a task");
+        println!("2. Mark a task as completed");
+        println!("3. View all tasks");
+        println!("4. View only incomplete tasks");
+        println!("5. Exit");
+
+        let mut input = String::new();
+        std::io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read line");
+        let input = input.trim();
+
+        match input {
+            "1" => add_task(&mut tasks),
+            "2" => mark_task_completed(&mut tasks),
+            "3" => view_tasks(&tasks),
+            "4" => view_incomplete_tasks(&tasks),
+            "5" => break,
+            _ => println!("Invalid input"),
+        }
+    }
+}
+
+fn add_task(tasks: &mut Vec<Task>) {
+    println!("Enter the title of the task:");
+    let mut title = String::new();
+    std::io::stdin()
+        .read_line(&mut title)
+        .expect("Failed to read line");
+    let title = title.trim();
+
+    println!("Enter the description of the task:");
+    let mut description = String::new();
+    std::io::stdin()
+        .read_line(&mut description)
+        .expect("Failed to read line");
+    let description = description.trim();
+
+    let task = Task {
+        title: title.to_string(),
+        description: description.to_string(),
+        completed: false,
+    };
+    tasks.push(task);
+}
+
+fn mark_task_completed(tasks: &mut Vec<Task>) {
+    println!("Enter the index of the task to mark as completed:");
+    let mut index = String::new();
+    std::io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line");
+    let index: usize = match index.trim().parse() {
+        Ok(num) => num,
+        Err(_) => return,
+    };
+
+    if index < tasks.len() {
+        tasks[index].completed = true;
+    } else {
+        println!("Invalid task index");
+    }
+}
+
+fn view_tasks(tasks: &Vec<Task>) {
+    for (index, task) in tasks.iter().enumerate() {
+        println!("{}. {} - {}", index, task.title, task.description);
+    }
+}
+
+fn view_incomplete_tasks(tasks: &Vec<Task>) {
+    for (index, task) in tasks.iter().enumerate() {
+        if !task.completed {
+            println!("{}. {} - {}", index, task.title, task.description);
+        }
+    }
+}
