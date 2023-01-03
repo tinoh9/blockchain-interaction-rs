@@ -474,15 +474,15 @@ fn main() {
     std::io::stdin()
         .read_line(&mut base)
         .expect("Failed to read the number");
-    let base: f32 = base.trim().parse().expect("Please enter the number");
+    let base: usize = base.trim().parse().expect("Please enter the number");
 
     println!("Please enter the height of the triangle:");
     let mut height = String::new();
     std::io::stdin()
         .read_line(&mut height)
         .expect("Failed to read the number");
-    let height: f32 = height.trim().parse().expect("Please enter the number");
+    let height: usize = height.trim().parse().expect("Please enter the number");
 
-    let area = (base * height) / 2.0;
+    let area: usize = (base * height) / 2;
     println!("The area of the triangle is {}", area);
 }
