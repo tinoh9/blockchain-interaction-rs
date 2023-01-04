@@ -501,7 +501,8 @@ fn main() {
         println!("2. Mark a task as completed");
         println!("3. View all tasks");
         println!("4. View only incomplete tasks");
-        println!("5. Exit");
+        println!("5. Delete a task");
+        println!("6. Exit");
 
         let mut input = String::new();
         std::io::stdin()
@@ -514,7 +515,8 @@ fn main() {
             "2" => mark_task_completed(&mut tasks),
             "3" => view_tasks(&tasks),
             "4" => view_incomplete_tasks(&tasks),
-            "5" => break,
+            "5" => delete_task(&mut tasks),
+            "6" => break,
             _ => println!("Invalid input"),
         }
     }
@@ -574,3 +576,23 @@ fn view_incomplete_tasks(tasks: &Vec<Task>) {
         }
     }
 }
+
+fn delete_task(tasks: &mut Vec<Task>) {
+    println!("Enter the index of the task to delete:");
+    let mut index = String::new();
+    std::io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line");
+    let index: usize = match index.trim().parse() {
+        Ok(num) => num,
+        Err(_) => return,
+    };
+
+    if index < tasks.len() {
+        tasks.remove(index);
+        println!("Task deleted successfully");
+    } else {
+        println!("Invalid task index");
+    }
+}
+
