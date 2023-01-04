@@ -501,8 +501,9 @@ fn main() {
         println!("2. Mark a task as completed");
         println!("3. View all tasks");
         println!("4. View only incomplete tasks");
-        println!("5. Delete a task");
-        println!("6. Exit");
+        println!("5. View only completed tasks");
+        println!("6. Delete a task");
+        println!("7. Exit");
 
         let mut input = String::new();
         std::io::stdin()
@@ -515,8 +516,9 @@ fn main() {
             "2" => mark_task_completed(&mut tasks),
             "3" => view_tasks(&tasks),
             "4" => view_incomplete_tasks(&tasks),
-            "5" => delete_task(&mut tasks),
-            "6" => break,
+            "5" => view_completed_tasks(&tasks),
+            "6" => delete_task(&mut tasks),
+            "7" => break,
             _ => println!("Invalid input"),
         }
     }
@@ -572,6 +574,14 @@ fn view_tasks(tasks: &Vec<Task>) {
 fn view_incomplete_tasks(tasks: &Vec<Task>) {
     for (index, task) in tasks.iter().enumerate() {
         if !task.completed {
+            println!("{}. {} - {}", index, task.title, task.description);
+        }
+    }
+}
+
+fn view_completed_tasks(tasks: &Vec<Task>) {
+    for (index, task) in tasks.iter().enumerate() {
+        if task.completed {
             println!("{}. {} - {}", index, task.title, task.description);
         }
     }
