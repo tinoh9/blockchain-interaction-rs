@@ -467,6 +467,7 @@ fn main() {
     let box_chicken = Box::new(Animal {chicken: 5});
     println!("There are {} chickens moved from the stack to the heap", box_chicken.heap_chicken());
 }
+
 // Calculate an area of a triangle
 fn main() {
     println!("Please enter the base of the triangle:");
@@ -486,6 +487,7 @@ fn main() {
     let area: usize = (base * height) / 2;
     println!("The area of the triangle is {}", area);
 }
+
 // To-do list management
 struct Task {
     title: String,
@@ -606,3 +608,27 @@ fn delete_task(tasks: &mut Vec<Task>) {
     }
 }
 
+// Read and count the total number of characters in a file (error handling, read filesystem)
+use std::env;
+use std::error::Error;
+use std::fs;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let args: Vec<String> = env::args().collect();
+
+    if args.len() < 2 {
+        return Err(From::from("missing argument: file name"));
+    }
+
+    let filename = &args[1];
+    let content = fs::read_to_string(filename)?;
+
+    let mut count = 0;
+    for line in content.lines() {
+        count += line.len();
+    }
+
+    println!("Total number of characters in {}: {}", filename, count);
+
+    Ok(())
+}
