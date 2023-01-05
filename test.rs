@@ -632,3 +632,140 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     Ok(())
 }
+
+// FEATURES IN RUST
+fn main() {
+    // Declare a variable binding
+    let x = 5;
+
+    // The type of `x` is inferred to be `i32`
+    println!("The value of x is: {}", x);
+
+    // Mutable variables are declared with the `mut` keyword
+    let mut y = 10;
+    y = 20;
+    println!("The value of y is: {}", y);
+
+    // Shadowing allows us to re-use a variable's name
+    // while giving it a new type or value
+    let y = "hello";
+    println!("The value of y is now: {}", y);
+
+    // Rust has a number of primitive types, including
+    // integers, floating-point numbers, Booleans, and characters
+    let a: i32 = 5;
+    let b: f64 = 3.14;
+    let c: bool = true;
+    let d: char = 'a';
+
+    // Rust also has a number of compound types, including
+    // tuples and arrays
+    let tup: (i32, f64, bool) = (5, 3.14, true);
+    let arr = [1, 2, 3, 4, 5];
+
+    // Destructuring lets us easily extract values from a tuple
+    let (x, y, z) = tup;
+    println!("The value of x is: {}", x);
+    println!("The value of y is: {}", y);
+    println!("The value of z is: {}", z);
+
+    // We can access elements of an array using indexing
+    println!("The value of the first element of arr is: {}", arr[0]);
+
+    // Rust has both if expressions and if statements
+    let n = 5;
+    if n < 10 {
+        println!("n is less than 10");
+    } else {
+        println!("n is greater than or equal to 10");
+    }
+
+    // Rust also has a number of looping constructs, including
+    // loop, while, and for
+    let mut i = 0;
+    loop {
+        if i > 10 {
+            break;
+        }
+        println!("i is {}", i);
+        i += 1;
+    }
+
+    let mut j = 0;
+    while j < 10 {
+        println!("j is {}", j);
+        j += 1;
+    }
+
+    for k in 0..10 {
+        println!("k is {}", k);
+    }
+
+    // Rust has a powerful pattern matching system that allows
+    // us to easily destructure values and bind variables
+    let x = 5;
+    match x {
+        0 => println!("x is zero"),
+        1 | 2 => println!("x is one or two"),
+        3..=10 => println!("x is between three and ten"),
+        _ => println!("x is something else"),
+    }
+
+    // Rust has both functions and closures
+    fn add(a: i32, b: i32) -> i32 {
+        a + b
+    }
+    let sum = add(1, 2);
+    println!("The sum is {}", sum);
+
+    let add_closure = |a: i32, b: i32| -> i32 {
+        a + b
+    };
+    let sum_closure = add_closure(1, 2);
+    println!("The sum from the closure is {}", sum_closure);
+    
+    // Rust has a number of built-in types and traits for working
+    // with collections, such as Vec<T>, Option<T>, and Iterator
+    let mut v = Vec::new();
+    v.push(1);
+    v.push(2);
+    v.push(3);
+    
+    for i in &v {
+        println!("i is {}", i);
+    }
+    
+    let first = v.get(0);
+    match first {
+        Some(x) => println!("The first element is {}", x),
+        None => println!("The vector is empty"),
+    }
+    
+    // Rust has a powerful macro system that allows us to easily
+    // define custom control flow constructs
+    macro_rules! say_hello {
+        () => {
+            println!("Hello!");
+        };
+    }
+    say_hello!();
+    
+    // Rust has a number of powerful features for working with
+    // concurrent and parallel code, such as threads, channels,
+    // and atomic variables
+    let handle = std::thread::spawn(|| {
+        println!("Hello from the spawned thread!");
+    });
+    handle.join().unwrap();
+    
+    let (tx, rx) = std::sync::mpsc::channel();
+    tx.send(5).unwrap();
+    let received = rx.recv().unwrap();
+    println!("Received {} from the channel", received);
+    
+    let atomic_x = std::sync::atomic::AtomicUsize::new(5);
+    atomic_x.store(10, std::sync::atomic::Ordering::SeqCst);
+    let x = atomic_x.load(std::sync::atomic::Ordering::SeqCst);
+    println!("The value of atomic_x is {}", x);
+    
+}
