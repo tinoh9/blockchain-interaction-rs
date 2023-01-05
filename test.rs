@@ -633,7 +633,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-// FEATURES IN RUST
+// SOME OF FEATURES IN RUST
 fn main() {
     // Declare a variable binding
     let x = 5;
