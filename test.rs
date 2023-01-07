@@ -468,7 +468,7 @@ fn main() {
     println!("There are {} chickens moved from the stack to the heap", box_chicken.heap_chicken());
 }
 
-// Calculate an area of a triangle
+//// Calculate an area of a triangle
 fn main() {
     println!("Please enter the base of the triangle:");
     let mut base = String::new();
@@ -488,7 +488,7 @@ fn main() {
     println!("The area of the triangle is {}", area);
 }
 
-// To-do list management
+//// To-do list management
 struct Task {
     title: String,
     description: String,
@@ -608,7 +608,7 @@ fn delete_task(tasks: &mut Vec<Task>) {
     }
 }
 
-// Read and count the total number of characters in a file (error handling, read filesystem)
+//// Read and count the total number of characters in a file (error handling, read filesystem)
 use std::env;
 use std::error::Error;
 use std::fs;
@@ -633,7 +633,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-// SOME OF FEATURES IN RUST
+//// SOME OF FEATURES IN RUST
 fn main() {
     // Declare a variable binding
     let x = 5;
@@ -770,7 +770,7 @@ fn main() {
     
 }
 
-// Reverses the lines
+//// Reverses the lines
 use std::io;
 
 fn main() {
@@ -794,7 +794,7 @@ fn main() {
     }
 }
 
-// Key-value store
+//// Key-value store
 use std::collections::HashMap;
 
 fn main() {
