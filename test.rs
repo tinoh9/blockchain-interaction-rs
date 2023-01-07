@@ -770,27 +770,26 @@ fn main() {
     
 }
 
-// Count the total number of characters in a text file
-use std::env;
-use std::fs;
-use std::error::Error;
+// Reverses the lines
+use std::io;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    // Read the file name from the command line arguments
-    let args: Vec<String> = env::args().collect();
-    if args.len() < 2 {
-        return Err(From::from("missing argument: file name"));
+fn main() {
+    // Read lines from standard input
+    let mut lines = Vec::new();
+    loop {
+        let mut line = String::new();
+        let result = io::stdin().read_line(&mut line);
+        if result.is_err() || line.is_empty() {
+            break;
+        }
+        lines.push(line);
     }
-    let filename = &args[1];
 
-    // Read the contents of the file into a string
-    let content = fs::read_to_string(filename)?;
+    // Reverse the lines
+    lines.reverse();
 
-    // Count the number of characters in the string
-    let count = content.chars().count();
-
-    // Print the result
-    println!("Total number of characters in {}: {}", filename, count);
-
-    Ok(())
+    // Print the reversed lines to standard output
+    for line in lines {
+        println!("{}", line);
+    }
 }
