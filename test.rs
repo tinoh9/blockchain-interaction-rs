@@ -793,3 +793,20 @@ fn main() {
         println!("{}", line);
     }
 }
+
+// Key-value store
+use std::collections::HashMap;
+
+fn main() {
+    // A simple key-value store implemented using a hash map
+    let mut store = HashMap::new();
+
+    // Insert some key-value pairs into the store
+    store.insert("apple", 0.99);
+    store.insert("banana", 0.59);
+    store.insert("orange", 0.79);
+
+    // Look up the value of a key in the store
+    let price = store.get("banana");
+    println!("The price of a banana is {:?}", price);
+}
