@@ -769,3 +769,28 @@ fn main() {
     println!("The value of atomic_x is {}", x);
     
 }
+
+// Count the total number of characters in a text file
+use std::env;
+use std::fs;
+use std::error::Error;
+
+fn main() -> Result<(), Box<dyn Error>> {
+    // Read the file name from the command line arguments
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 2 {
+        return Err(From::from("missing argument: file name"));
+    }
+    let filename = &args[1];
+
+    // Read the contents of the file into a string
+    let content = fs::read_to_string(filename)?;
+
+    // Count the number of characters in the string
+    let count = content.chars().count();
+
+    // Print the result
+    println!("Total number of characters in {}: {}", filename, count);
+
+    Ok(())
+}
