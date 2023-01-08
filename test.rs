@@ -827,3 +827,25 @@ fn main() {
     *d += 5; // update "a" reference to new value
     println!("a = {}", a);
 }
+
+//// Concurrency and channel
+use std::thread;
+use std::sync::mpsc;
+
+fn main() {
+    // Create a channel to communicate between threads
+    let (tx, rx) = mpsc::channel();
+
+    // Create a new thread and move a closure into it
+    let handle = thread::spawn(move || {
+        // Send a message through the channel
+        tx.send(5).unwrap();
+    });
+
+    // Wait for the spawned thread to finish
+    handle.join().unwrap();
+
+    // Receive the message from the channel
+    let received = rx.recv().unwrap();
+    println!("Received {} from the channel", received);
+}
