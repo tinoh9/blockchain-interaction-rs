@@ -810,3 +810,20 @@ fn main() {
     let price = store.get("banana");
     println!("The price of a banana is {:?}", price);
 }
+
+//// Borrow checker
+fn main() {
+    let mut a = 10;
+    let b = &mut a; // borrow mutable "a" as "b"
+    *b = *b + 5; // update "a" reference to new value
+    println!("a = {}", a);
+
+    let c = &a; // borrow immutable "a" (cannot borrow as mutable "a" because allow only 1 mutable variable borrowed at a time)
+    println!("c = {}", c);
+
+    drop(b); // "b" goes out of scope, return mutable "a"
+
+    let d = &mut a; // borrow mutable "a" as "d" again
+    *d += 5; // update "a" reference to new value
+    println!("a = {}", a);
+}
