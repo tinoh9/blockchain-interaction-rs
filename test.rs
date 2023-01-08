@@ -828,7 +828,7 @@ fn main() {
     println!("a = {}", a);
 }
 
-//// Concurrency and channel
+//// Channel and concurrency
 use std::thread;
 use std::sync::mpsc;
 
