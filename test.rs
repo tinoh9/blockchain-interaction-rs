@@ -911,7 +911,7 @@ use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, DeriveInput, Data, DataStruct, Field};
 
-#[proc_macro_derive(Serialize)]
+#[proc_macro_derive(Serialize)] // Custom attribute
 pub fn serialize(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let name = &input.ident;
