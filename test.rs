@@ -849,3 +849,13 @@ fn main() {
     let received = rx.recv().unwrap();
     println!("Received {} from the channel", received);
 }
+
+//// Parallel programming
+
+use rayon::prelude::*;
+
+fn main() {
+    let a = vec![1, 2, 3, 4, 5];
+    let b = a.par_iter().sum();
+    println!("{}", b);
+}
