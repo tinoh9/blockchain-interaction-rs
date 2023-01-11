@@ -851,11 +851,42 @@ fn main() {
 }
 
 //// Parallel programming
-
 use rayon::prelude::*;
 
 fn main() {
     let a = vec![1, 2, 3, 4, 5];
     let b = a.par_iter().sum();
     println!("{}", b);
+}
+
+//// Functional programming
+let vec_1 = vec![1, 2, 3, 4, 5];
+let result_1: Vec<i32> = vec_1.iter()
+    .map(|x| x * 2)
+    .filter(|x| x > &3)
+    .collect();
+
+println!("{:?}", result_1);
+
+let vec_2 = vec![1, 2, 3, 4, 5];
+let result_2 = vec_2.iter().fold(0, |acc, &x| acc + x);
+
+println!("{}", result_2);
+
+//// Smart pointers and ownership
+use std::rc::Rc;
+
+struct List {
+    value: i32,
+    next: Option<Rc<List>>,
+}
+
+fn main() {
+    let a = Rc::new(List { value: 1, next: None });
+    let b = Rc::new(List { value: 2, next: Some(Rc::clone(&a)) });
+    let c = Rc::new(List { value: 3, next: Some(Rc::clone(&b)) });
+
+    println!("a.value = {}", a.value);
+    println!("b.value = {}", b.value);
+    println!("c.value = {}", c.value);
 }
