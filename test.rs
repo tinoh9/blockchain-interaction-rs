@@ -828,7 +828,7 @@ fn main() {
     println!("a = {}", a);
 }
 
-//// Channel and concurrency
+//// Channel & Concurrency
 use std::thread;
 use std::sync::mpsc;
 
@@ -873,7 +873,7 @@ let result_2 = vec_2.iter().fold(0, |acc, &x| acc + x);
 
 println!("{}", result_2);
 
-//// Smart pointers and ownership
+//// Smart pointers & Ownership
 use std::rc::Rc;
 
 struct List {
@@ -889,4 +889,53 @@ fn main() {
     println!("a.value = {}", a.value);
     println!("b.value = {}", b.value);
     println!("c.value = {}", c.value);
+}
+
+//// Declarative macros
+macro_rules! debug_println {
+    ($($arg:tt)*) => {
+        {
+            if std::env::var("DEBUG").is_ok() {
+                println!($($arg)*);
+            }
+        }
+    };
+}
+
+fn main() {
+    debug_println!("debug message");
+}
+    
+//// Procedural macros
+use proc_macro::TokenStream;
+use quote::quote;
+use syn::{parse_macro_input, DeriveInput, Data, DataStruct, Field};
+
+#[proc_macro_derive(Serialize)]
+pub fn serialize(input: TokenStream) -> TokenStream {
+    let input = parse_macro_input!(input as DeriveInput);
+    let name = &input.ident;
+    let fields = match &input.data {
+        Data::Struct(DataStruct { fields, .. }) => fields,
+        _ => panic!("#[derive(Serialize)] can only be used with structs"),
+    };
+    let field_names = fields
+        .iter()
+        .map(|f| f.ident.as_ref().unwrap())
+        .map(|i| i.to_string())
+        .collect::<Vec<_>>();
+
+    let expanded = quote! {
+        impl Serialize for #name {
+            fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+            where
+                S: Serializer,
+            {
+                let mut state = serializer.serialize_struct(stringify!(#name), #field_names.len())?;
+                #(state.serialize_field(#field_names, &self.#field_names)?;)*
+                state.end()
+            }
+        }
+    };
+    expanded.into()
 }
