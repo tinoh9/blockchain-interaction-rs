@@ -939,3 +939,50 @@ pub fn serialize(input: TokenStream) -> TokenStream {
     };
     expanded.into()
 }
+
+//// Error handling
+use std::fs::File;
+use std::io::{Error, ErrorKind, Read};
+use std::path::Path;
+
+enum MyError {
+    FileError(Error),
+    ParseError(std::num::ParseIntError),
+    NegativeNumberError,
+}
+
+impl From<Error> for MyError {
+    fn from(error: Error) -> Self {
+        MyError::FileError(error)
+    }
+}
+
+impl From<std::num::ParseIntError> for MyError {
+    fn from(error: std::num::ParseIntError) -> Self {
+        MyError::ParseError(error)
+    }
+}
+
+fn read_file(file_name: &str) -> Result<i32, MyError> {
+    let path = Path::new(file_name);
+    let mut file = match File::open(&path) {
+        Ok(file) => file,
+        Err(error) => {
+            if error.kind() == ErrorKind::NotFound {
+                return Err(MyError::FileError(error));
+            } else {
+                return Err(error.into());
+            }
+        }
+    };
+
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+
+    let number: i32 = contents.trim().parse()?;
+    if number < 0 {
+        return Err(MyError::NegativeNumberError);
+    } else {
+        Ok(number)
+    }
+}
