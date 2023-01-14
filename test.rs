@@ -986,3 +986,75 @@ fn read_file(file_name: &str) -> Result<i32, MyError> {
         Ok(number)
     }
 }
+
+//// Traits
+trait Drawable {
+    fn draw(&self);
+}
+
+trait Canvas {
+    fn set_color(&mut self, color: &str);
+    fn draw_shape(&mut self, shape: &dyn Drawable);
+}
+
+struct Rectangle {
+    width: f64,
+    height: f64,
+    color: String,
+}
+
+impl Drawable for Rectangle {
+    fn draw(&self) {
+        println!("Drawing a rectangle with width {} and height {} and color {}",
+                 self.width, self.height, self.color);
+    }
+}
+
+struct Circle {
+    radius: f64,
+    color: String,
+}
+
+impl Drawable for Circle {
+    fn draw(&self) {
+        println!("Drawing a circle with radius {} and color {}",
+                 self.radius, self.color);
+    }
+}
+
+struct Square {
+    side: f64,
+    color: String,
+}
+
+impl Drawable for Square {
+    fn draw(&self) {
+        println!("Drawing a square with side {} and color {}",
+                 self.side, self.color);
+    }
+}
+
+struct Screen {
+    color: String,
+}
+
+impl Canvas for Screen {
+    fn set_color(&mut self, color: &str) {
+        self.color = color.to_string();
+    }
+
+    fn draw_shape(&mut self, shape: &dyn Drawable) {
+        shape.draw();
+    }
+}
+
+fn main() {
+    let mut screen = Screen { color: "black".to_string() };
+    let rect = Rectangle { width: 3.0, height: 4.0, color: "red".to_string() };
+    let circle = Circle { radius: 5.0, color: "blue".to_string() };
+    let square = Square { side: 2.0, color: "green".to_string() };
+    screen.set_color("white");
+    screen.draw_shape(&rect);
+    screen.draw_shape(&circle);
+    screen.draw_shape(&square);
+}
