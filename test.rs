@@ -1077,3 +1077,32 @@ fn main() {
         println!("My data slice: {:?}", my_data_slice);
     }
 }
+
+//// Generics
+struct MyStruct<T> {
+    data: [T; 10],
+}
+
+impl<T> MyStruct<T> {
+    fn new(item: T) -> MyStruct<T> {
+        MyStruct { data: [item; 10] }
+    }
+
+    fn update(&mut self, index: usize, item: T) {
+        self.data[index] = item;
+    }
+
+    fn get(&self, index: usize) -> &T {
+        &self.data[index]
+    }
+}
+
+fn main() {
+    let mut my_struct = MyStruct::new(0);
+    my_struct.update(5, 10);
+    println!("Data at index 5: {:?}", my_struct.get(5));
+
+    let mut my_struct_2 = MyStruct::new(String::from("Hello"));
+    my_struct_2.update(5, String::from("World"));
+    println!("Data at index 5: {:?}", my_struct_2.get(5));
+}
