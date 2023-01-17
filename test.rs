@@ -1059,7 +1059,7 @@ fn main() {
     screen.draw_shape(&square);
 }
 
-//// Unsafe Rust
+//// Unsafe Rust (not recommend to use this feature regularly, use safety alternatives instead)
 struct MyStruct {
     data: [i32; 10],
 }
