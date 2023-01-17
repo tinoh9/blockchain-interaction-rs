@@ -1058,3 +1058,22 @@ fn main() {
     screen.draw_shape(&circle);
     screen.draw_shape(&square);
 }
+
+//// Unsafe Rust
+struct MyStruct {
+    data: [i32; 10],
+}
+
+fn main() {
+    let my_struct = MyStruct { data: [0; 10] };
+    let my_struct_ptr: *const MyStruct = &my_struct;
+    let my_data_ptr: *const i32 = my_struct_ptr as *const i32;
+    let my_data_slice: &[i32] = unsafe {
+        std::slice::from_raw_parts(my_data_ptr, 10)
+    };
+    println!("My data slice: {:?}", my_data_slice);
+    unsafe {
+        *my_data_ptr = 1;
+        println!("My data slice: {:?}", my_data_slice);
+    }
+}
