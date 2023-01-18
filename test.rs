@@ -1106,3 +1106,26 @@ fn main() {
     my_struct_2.update(5, String::from("World"));
     println!("Data at index 5: {:?}", my_struct_2.get(5));
 }
+
+//// Lifetimes
+struct MyStruct<'a, T: 'a> {
+    data: &'a T,
+    data_vec: &'a Vec<T>,
+}
+
+fn my_function<'a, T>(my_struct: &'a MyStruct<'a, T>) -> &'a T
+where T: 'a
+{
+    my_struct.data
+}
+
+fn main() {
+    let my_vec = vec![1, 2, 3];
+    let my_struct = MyStruct {
+        data: &my_vec[0],
+        data_vec: &my_vec,
+    };
+
+    let data = my_function(&my_struct);
+    println!("Data: {:?}", data);
+}
