@@ -1129,3 +1129,43 @@ fn main() {
     let data = my_function(&my_struct);
     println!("Data: {:?}", data);
 }
+
+//// Multi-threaded TCP server
+use std::net::{TcpListener, TcpStream};
+use std::io::{Read, Write};
+use std::thread;
+
+fn handle_client(stream: TcpStream) {
+    let mut buffer = [0; 512];
+
+    loop {
+        let bytes_read = match stream.read(&mut buffer) {
+            Ok(bytes) => bytes,
+            Err(_) => return,
+        };
+
+        if bytes_read == 0 {
+            return;
+        }
+
+        match stream.write(&buffer[..bytes_read]) {
+            Ok(_) => (),
+            Err(_) => return,
+        }
+    }
+}
+
+fn main() {
+    let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
+
+    for stream in listener.incoming() {
+        match stream {
+            Ok(stream) => {
+                thread::spawn(|| {
+                    handle_client(stream)
+                });
+            }
+            Err(_) => { /* connection failed */ }
+        }
+    }
+}
