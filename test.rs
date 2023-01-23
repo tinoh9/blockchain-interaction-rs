@@ -1176,14 +1176,14 @@ fn main(mut v: Vec<i32>) -> Vec<i32> {
     loop {
         let mut new_n = 0;
         for i in 1..n {
-            if v[i-1] > v[i] {
-                v.swap(i, i-1);
+            if v[i - 1] > v[i] {
+                v.swap(i - 1, i);
+                new_n = i;
             }
-            new_n = i;
         }
         n = new_n;
         if n == 0 {
-            break
+            break;
         }
     }
     v
