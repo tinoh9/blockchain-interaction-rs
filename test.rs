@@ -1188,3 +1188,30 @@ fn main(mut v: Vec<i32>) -> Vec<i32> {
     }
     v
 }
+
+//// Non-ASCII alphabetic characters filter (using iterator)
+struct AsciiAlphabetic<I> {
+    iter: I,
+}
+
+impl<I> Iterator for AsciiAlphabetic<I>
+where
+    I: Iterator<Item = u8>,
+{
+    type Item = u8;
+    fn next(&mut self) -> Option<Self::Item> {
+        while let Some(b) = self.iter.next() {
+            if (b >= b'a' && b <= b'z') || (b >= b'A' && b <= b'Z') {
+                return Some(b);
+            }
+        }
+        None
+    }
+}
+
+fn ascii_alphabetic<I>(iter: I) -> AsciiAlphabetic<I>
+where
+    I: Iterator<Item = u8>,
+{
+    AsciiAlphabetic { iter }
+}
