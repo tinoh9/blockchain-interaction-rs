@@ -1235,14 +1235,19 @@ mod tests {
 //// Problem: Write a function that takes a vector of integers as input and returns a new vector
 //// containing only the unique elements in the input vector, preserving the original order.
 
+// use std::collections::HashSet;
+
 fn unique_elements(v: Vec<i32>) -> Vec<i32> {
     let mut unique = Vec::new();
+//  let mut unique = HashSet::new();
     for i in v {
         if !unique.contains(&i) {
             unique.push(i);
+//          unique.insert(i); 
         }
     }
     unique
+//  unique.into_iter().collect()  
 }
 
 #[cfg(test)]
