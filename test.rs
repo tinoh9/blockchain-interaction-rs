@@ -1215,3 +1215,19 @@ where
 {
     AsciiAlphabetic { iter }
 }
+
+//// Reverse String Test
+fn reverse_string(s: &str) -> String {
+    s.chars().rev().collect::<String>()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_reverse_string() {
+        assert_eq!(reverse_string("hello"), "olleh");
+        assert_eq!(reverse_string("world"), "dlrow");
+    }
+}
