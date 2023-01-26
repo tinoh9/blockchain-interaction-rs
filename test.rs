@@ -1216,7 +1216,7 @@ where
     AsciiAlphabetic { iter }
 }
 
-//// Reverse String Test
+//// Problem: Write a function that reverses the input string and returns the reversed string
 fn reverse_string(s: &str) -> String {
     s.chars().rev().collect::<String>()
 }
@@ -1229,5 +1229,29 @@ mod tests {
     fn test_reverse_string() {
         assert_eq!(reverse_string("hello"), "olleh");
         assert_eq!(reverse_string("world"), "dlrow");
+    }
+}
+
+//// Problem: Write a function that takes a vector of integers as input and returns a new vector
+//// containing only the unique elements in the input vector, preserving the original order.
+
+fn unique_elements(v: Vec<i32>) -> Vec<i32> {
+    let mut unique = Vec::new();
+    for i in v {
+        if !unique.contains(&i) {
+            unique.push(i);
+        }
+    }
+    unique
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_unique_elements() {
+        assert_eq!(unique_elements(vec![1, 2, 3, 2, 1]), vec![1, 2, 3]);
+        assert_eq!(unique_elements(vec![1, 1, 1, 1, 1]), vec![1]);
     }
 }
