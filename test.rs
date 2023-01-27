@@ -1260,3 +1260,44 @@ mod tests {
         assert_eq!(unique_elements(vec![1, 1, 1, 1, 1]), vec![1]);
     }
 }
+
+//// Least Recently Used (LRU) cache
+use std::collections::HashMap;
+
+struct LRUCache {
+    capacity: usize,
+    cache: HashMap<i32, i32>,
+    keys: Vec<i32>,
+}
+
+impl LRUCache {
+    fn new(capacity: usize) -> Self {
+        LRUCache {
+            capacity,
+            cache: HashMap::new(),
+            keys: Vec::new(),
+        }
+    }
+
+    fn get(&mut self, key: i32) -> i32 {
+        if let Some(value) = self.cache.get(&key) {
+            let index = self.keys.iter().position(|&k| k == key).unwrap();
+            self.keys.remove(index);
+            self.keys.push(key);
+            return *value;
+        }
+        -1
+    }
+
+    fn put(&mut self, key: i32, value: i32) {
+        if self.cache.contains_key(&key) {
+            let index = self.keys.iter().position(|&k| k == key).unwrap();
+            self.keys.remove(index);
+        } else if self.keys.len() == self.capacity {
+            let oldest_key = self.keys.remove(0);
+            self.cache.remove(&oldest_key);
+        }
+        self.keys.push(key);
+        self.cache.insert(key, value);
+    }
+}
