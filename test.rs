@@ -1360,3 +1360,16 @@ mod tests {
         assert!(!is_palindrome("hello"));
     }
 }
+
+//// Return the largest continuous sum of subarrays from a list of integers
+fn largest_continuous_sum(numbers: Vec<i32>) -> i32 {
+    let mut max_sum = numbers[0];
+    let mut current_sum = numbers[0];
+
+    for i in 1..numbers.len() {
+        current_sum = std::cmp::max(numbers[i], current_sum + numbers[i]);
+        max_sum = std::cmp::max(max_sum, current_sum);
+    }
+
+    max_sum
+}
