@@ -1301,3 +1301,29 @@ impl LRUCache {
         self.cache.insert(key, value);
     }
 }
+
+//// Returns the number of set bits (bits with value 1)
+fn count_bits(n: u32) -> u32 {
+    let mut count = 0;
+    let mut x = n;
+    while x > 0 {
+        count += x & 1;
+        x >>= 1;
+    }
+    count
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_count_bits() {
+        assert_eq!(count_bits(0), 0);
+        assert_eq!(count_bits(1), 1);
+        assert_eq!(count_bits(2), 1);
+        assert_eq!(count_bits(3), 2);
+        assert_eq!(count_bits(4), 1);
+        assert_eq!(count_bits(5), 2);
+    }
+}
