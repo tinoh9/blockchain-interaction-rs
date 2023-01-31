@@ -1302,7 +1302,7 @@ impl LRUCache {
     }
 }
 
-//// Returns the number of set bits (bits with value 1)
+//// Return the number of set bits (bits with value 1)
 fn count_bits(n: u32) -> u32 {
     let mut count = 0;
     let mut x = n;
@@ -1325,5 +1325,38 @@ mod tests {
         assert_eq!(count_bits(3), 2);
         assert_eq!(count_bits(4), 1);
         assert_eq!(count_bits(5), 2);
+    }
+}
+
+//// Check if the string is palindrome or not
+use std::collections::HashMap;
+
+fn is_palindrome(s: &str) -> bool {
+    let mut char_count = HashMap::new();
+    for c in s.chars() {
+        *char_count.entry(c).or_default() += 1;
+    }
+
+    let mut num_odd = 0;
+    for (_, count) in char_count.iter() {
+        if count % 2 != 0 {
+            num_odd += 1;
+        }
+        if num_odd > 1 {
+            return false;
+        }
+    }
+    true
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_is_palindrome() {
+        assert!(is_palindrome("racecar"));
+        assert!(is_palindrome("level"));
+        assert!(!is_palindrome("hello"));
     }
 }
