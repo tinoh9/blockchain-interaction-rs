@@ -1400,3 +1400,35 @@ mod tests {
         assert_eq!(sorted, vec!["a", "b", "c", "d", "e"]);
     }
 }
+
+//// Return the longest substring without repeating characters
+use std::collections::HashMap;
+
+fn find_longest_substring(s: &str) -> usize {
+    let mut start = 0;
+    let mut max_len = 0;
+    let mut char_index_map = HashMap::new();
+
+    for (i, c) in s.chars().enumerate() {
+        if let Some(prev_index) = char_index_map.get(&c) {
+            start = start.max(*prev_index + 1);
+        }
+        max_len = max_len.max(i - start + 1);
+        char_index_map.insert(c, i);
+    }
+
+    max_len
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_find_longest_substring() {
+        assert_eq!(find_longest_substring("abcabcbb"), 3);
+        assert_eq!(find_longest_substring("bbbbb"), 1);
+        assert_eq!(find_longest_substring("pwwkew"), 3);
+        assert_eq!(find_longest_substring(""), 0);
+    }
+}
