@@ -1373,3 +1373,30 @@ fn largest_continuous_sum(numbers: Vec<i32>) -> i32 {
 
     max_sum
 }
+
+//// Return a slice of string in lexicographic order
+fn sort_strings<'a>(strings: &'a [&'a str]) -> Vec<&'a str> {
+    let mut sorted = strings.to_vec();
+    sorted.sort();
+    sorted
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_sort_strings() {
+        let strings = &["Rust", "is", "fast", "and", "safe"];
+        let sorted = sort_strings(strings);
+        assert_eq!(sorted, vec!["Rust", "and", "fast", "is", "safe"]);
+
+        let strings = &["hello", "world"];
+        let sorted = sort_strings(strings);
+        assert_eq!(sorted, vec!["hello", "world"]);
+
+        let strings = &["a", "b", "c", "d", "e"];
+        let sorted = sort_strings(strings);
+        assert_eq!(sorted, vec!["a", "b", "c", "d", "e"]);
+    }
+}
