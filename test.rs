@@ -1432,3 +1432,32 @@ mod tests {
         assert_eq!(find_longest_substring(""), 0);
     }
 }
+
+//// Enum
+enum Shape {
+    Rectangle {width: f64, height: f64},
+    Circle {radius: f64},
+    Triangle {base: f64, height: f64},
+}
+
+impl Shape {
+    fn area(&self) -> f64 {
+        match *self {
+            Shape::Rectangle {width, height} => width * height,
+            Shape::Circle {radius} => 3.14159265358979 * radius * radius,
+            Shape::Triangle {base, height} => 0.5 * base * height,
+        }
+    }
+}
+
+fn main() {
+    let shapes = vec![
+        Shape::Rectangle {width: 10.0, height: 20.0},
+        Shape::Circle {radius: 5.0},
+        Shape::Triangle {base: 15.0, height: 20.0},
+    ];
+
+    for shape in shapes {
+        println!("The area of shape is: {}", shape.area());
+    }
+}
