@@ -15,16 +15,45 @@ enum Transmission {
 
 #[derive(Debug, PartialEq)]
 enum Age {
-    New,
     Used,
+    New,
 }
 
 fn car_quality(miles: u32) -> (Age, u32) {
-    let quality = (Age::New, miles);
-    quality
+    if miles > 0 {
+        return (Age::Used, miles);
+    } else {
+        return (Age::New, miles);
+    }
 }
 
 fn car_factory(color: String, motor: Transmission, roof: bool, miles: u32) -> Car {
+    if car_quality(miles).0 == Age::Used {
+        if roof {
+            println!(
+                "Prepare a used car: {:?}, {}, hard top, {} miles",
+                motor, color, miles
+            )
+        } else {
+            println!(
+                "Prepare a used car: {:?}, {}, convertible top, {} miles",
+                motor, color, miles
+            )
+        }
+    } else {
+        if roof {
+            println!(
+                "Prepare a new car: {:?}, {}, hard top, {} miles",
+                motor, color, miles
+            )
+        } else {
+            println!(
+                "Prepare a new car: {:?}, {}, convertible top, {} miles",
+                motor, color, miles
+            )
+        }
+    }
+
     Car {
         color: color,
         motor: motor,
