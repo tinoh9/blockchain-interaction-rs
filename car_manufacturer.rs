@@ -31,24 +31,24 @@ fn car_factory(color: String, motor: Transmission, roof: bool, miles: u32) -> Ca
     if car_quality(miles).0 == Age::Used {
         if roof {
             println!(
-                "Prepare a used car: {:?}, {}, hard top, {} miles",
+                "Prepare a used car: {:?}, {}, Hard top, {} miles",
                 motor, color, miles
             )
         } else {
             println!(
-                "Prepare a used car: {:?}, {}, convertible top, {} miles",
+                "Prepare a used car: {:?}, {}, Convertible top, {} miles",
                 motor, color, miles
             )
         }
     } else {
         if roof {
             println!(
-                "Prepare a new car: {:?}, {}, hard top, {} miles",
+                "Prepare a new car: {:?}, {}, Hard top, {} miles",
                 motor, color, miles
             )
         } else {
             println!(
-                "Prepare a new car: {:?}, {}, convertible top, {} miles",
+                "Prepare a new car: {:?}, {}, Convertible top, {} miles",
                 motor, color, miles
             )
         }
@@ -67,7 +67,7 @@ fn main() {
     let mut car: Car;
     let mut engine = Transmission::Manual;
 
-    car = car_factory(String::from(colors[0]), engine, true, 10);
+    car = car_factory(String::from(colors[0]), engine, true, 0);
     println!(
         "This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
         car.age.0, car.color, car.motor, car.roof, car.age.1
