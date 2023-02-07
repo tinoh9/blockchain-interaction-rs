@@ -30,7 +30,7 @@ fn car_quality(miles: u32) -> (Age, u32) {
 fn car_factory(order: u32, miles: u32) -> Car {
     let colors = ["Red", "Green", "Blue", "Yellow"];
     let mut color = order as usize;
-    if color > 4 {
+    while color > 4 {
         color = color - 4;
     }
 
@@ -55,25 +55,18 @@ fn main() {
     use std::collections::HashMap;
 
     let mut orders: HashMap<u32, Car> = HashMap::new();
-    let mut order = 1;
+    let mut miles = 0;
     let mut car: Car;
 
-    car = car_factory(order, 0);
-    orders.insert(order, car);
-    println!("Order {}: {:?}", order, orders.get(&order));
+    for order in 1..11 {
+        car = car_factory(order, miles);
+        orders.insert(order, car);
+        println!("Car order {}: {:?}", order, orders.get(&order));
 
-    order = order + 1;
-    car = car_factory(order, 100);
-    orders.insert(order, car);
-    println!("Order {}: {:?}", order, orders.get(&order));
-
-    order = order + 1;
-    car = car_factory(order, 0);
-    orders.insert(order, car);
-    println!("Order {}: {:?}", order, orders.get(&order));
-
-    order = order + 1;
-    car = car_factory(order, 1000);
-    orders.insert(order, car);
-    println!("Order {}: {:?}", order, orders.get(&order));
+        if miles == 1000 {
+            miles = 0;
+        } else {
+            miles = miles + 500;
+        }
+    }
 }
