@@ -27,35 +27,24 @@ fn car_quality(miles: u32) -> (Age, u32) {
     }
 }
 
-fn car_factory(color: String, motor: Transmission, roof: bool, miles: u32) -> Car {
-    if car_quality(miles).0 == Age::Used {
-        if roof {
-            println!(
-                "Prepare a used car: {:?}, {}, Hard top, {} miles",
-                motor, color, miles
-            )
-        } else {
-            println!(
-                "Prepare a used car: {:?}, {}, Convertible top, {} miles",
-                motor, color, miles
-            )
-        }
-    } else {
-        if roof {
-            println!(
-                "Prepare a new car: {:?}, {}, Hard top, {} miles",
-                motor, color, miles
-            )
-        } else {
-            println!(
-                "Prepare a new car: {:?}, {}, Convertible top, {} miles",
-                motor, color, miles
-            )
-        }
+fn car_factory(order: u32, miles: u32) -> Car {
+    let colors = ["Red", "Green", "Blue", "Yellow"];
+    let mut color = order as usize;
+    if color > 4 {
+        color = color - 4;
+    }
+
+    let mut motor = Transmission::Manual;
+    let mut roof = true;
+    if order % 3 == 0 {
+        motor = Transmission::SemiAuto;
+    } else if order % 2 == 0 {
+        motor = Transmission::Automatic;
+        roof = false;
     }
 
     Car {
-        color: color,
+        color: String::from(colors[(color - 1) as usize]),
         motor: motor,
         roof: roof,
         age: car_quality(miles),
@@ -63,27 +52,33 @@ fn car_factory(color: String, motor: Transmission, roof: bool, miles: u32) -> Ca
 }
 
 fn main() {
-    let colors = ["Red", "Green", "Blue", "Yellow"];
+    let mut order = 1;
     let mut car: Car;
-    let mut engine = Transmission::Manual;
 
-    car = car_factory(String::from(colors[0]), engine, true, 0);
+    car = car_factory(order, 0);
     println!(
-        "This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
-        car.age.0, car.color, car.motor, car.roof, car.age.1
+        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
+        order, car.age.0, car.color, car.motor, car.roof, car.age.1
     );
 
-    engine = Transmission::SemiAuto;
-    car = car_factory(String::from(colors[1]), engine, false, 100);
+    order = order + 1;
+    car = car_factory(order, 100);
     println!(
-        "This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
-        car.age.0, car.color, car.motor, car.roof, car.age.1
+        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
+        order, car.age.0, car.color, car.motor, car.roof, car.age.1
     );
 
-    engine = Transmission::Automatic;
-    car = car_factory(String::from(colors[2]), engine, false, 200);
+    order = order + 1;
+    car = car_factory(order, 0);
     println!(
-        "This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
-        car.age.0, car.color, car.motor, car.roof, car.age.1
+        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
+        order, car.age.0, car.color, car.motor, car.roof, car.age.1
+    );
+
+    order = order + 1;
+    car = car_factory(order, 1000);
+    println!(
+        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
+        order, car.age.0, car.color, car.motor, car.roof, car.age.1
     );
 }
