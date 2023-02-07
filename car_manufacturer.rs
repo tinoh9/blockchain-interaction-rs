@@ -52,33 +52,28 @@ fn car_factory(order: u32, miles: u32) -> Car {
 }
 
 fn main() {
+    use std::collections::HashMap;
+
+    let mut orders: HashMap<u32, Car> = HashMap::new();
     let mut order = 1;
     let mut car: Car;
 
     car = car_factory(order, 0);
-    println!(
-        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
-        order, car.age.0, car.color, car.motor, car.roof, car.age.1
-    );
+    orders.insert(order, car);
+    println!("Order {}: {:?}", order, orders.get(&order));
 
     order = order + 1;
     car = car_factory(order, 100);
-    println!(
-        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
-        order, car.age.0, car.color, car.motor, car.roof, car.age.1
-    );
+    orders.insert(order, car);
+    println!("Order {}: {:?}", order, orders.get(&order));
 
     order = order + 1;
     car = car_factory(order, 0);
-    println!(
-        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
-        order, car.age.0, car.color, car.motor, car.roof, car.age.1
-    );
+    orders.insert(order, car);
+    println!("Order {}: {:?}", order, orders.get(&order));
 
     order = order + 1;
     car = car_factory(order, 1000);
-    println!(
-        "{}: This {:?} car has {} color, {:?} transmission, roof: {}, {} miles",
-        order, car.age.0, car.color, car.motor, car.roof, car.age.1
-    );
+    orders.insert(order, car);
+    println!("Order {}: {:?}", order, orders.get(&order));
 }
