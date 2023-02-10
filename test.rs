@@ -1216,7 +1216,7 @@ where
     AsciiAlphabetic { iter }
 }
 
-//// Problem: Write a function that reverses the input string and returns the reversed string
+//// Test: write a function that reverses the input string and returns the reversed string
 fn reverse_string(s: &str) -> String {
     s.chars().rev().collect::<String>()
 }
@@ -1232,7 +1232,7 @@ mod tests {
     }
 }
 
-//// Problem: Write a function that takes a vector of integers as input and returns a new vector
+//// Test: write a function that takes a vector of integers as input and returns a new vector
 //// containing only the unique elements in the input vector, preserving the original order.
 
 // use std::collections::HashSet;
@@ -1302,7 +1302,7 @@ impl LRUCache {
     }
 }
 
-//// Return the number of set bits (bits with value 1)
+//// Test: return the number of set bits (bits with value 1)
 fn count_bits(n: u32) -> u32 {
     let mut count = 0;
     let mut x = n;
@@ -1328,7 +1328,7 @@ mod tests {
     }
 }
 
-//// Check if the string is palindrome or not
+//// Test: check if the string is palindrome or not
 use std::collections::HashMap;
 
 fn is_palindrome(s: &str) -> bool {
@@ -1374,7 +1374,7 @@ fn largest_continuous_sum(numbers: Vec<i32>) -> i32 {
     max_sum
 }
 
-//// Return a slice of string in lexicographic order
+//// Test: return a slice of string in lexicographic order
 fn sort_strings<'a>(strings: &'a [&'a str]) -> Vec<&'a str> {
     let mut sorted = strings.to_vec();
     sorted.sort();
@@ -1401,7 +1401,7 @@ mod tests {
     }
 }
 
-//// Return the longest substring without repeating characters
+//// Test: return the longest substring without repeating characters
 use std::collections::HashMap;
 
 fn find_longest_substring(s: &str) -> usize {
@@ -1460,4 +1460,48 @@ fn main() {
     for shape in shapes {
         println!("The area of shape is: {}", shape.area());
     }
+}
+
+//// Test: returns the full name of some people
+struct Person {
+    first: String,
+    middle: Option<String>,
+    last: String,
+}
+
+fn build_full_name(person: &Person) -> String {
+    let mut full_name = String::new();
+    full_name.push_str(&person.first);
+    full_name.push_str(" ");
+
+    if let Some(middle) = &person.middle {
+        full_name.push_str(&middle);
+        full_name.push_str(" ")
+    }
+
+    full_name.push_str(&person.last);
+    full_name
+}
+
+fn main() {
+    let john = Person {
+        first: String::from("James"),
+        middle: Some(String::from("Oliver")),
+        last: String::from("Smith"),
+    };
+    assert_eq!(build_full_name(&john), "James Oliver Smith");
+
+    let alice = Person {
+        first: String::from("Alice"),
+        middle: None,
+        last: String::from("Stevens"),
+    };
+    assert_eq!(build_full_name(&alice), "Alice Stevens");
+
+    let bob = Person {
+        first: String::from("Robert"),
+        middle: Some(String::from("Murdock")),
+        last: String::from("Jones"),
+    };
+    assert_eq!(build_full_name(&bob), "Robert Murdock Jones");
 }
