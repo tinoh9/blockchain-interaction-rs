@@ -1485,23 +1485,46 @@ fn build_full_name(person: &Person) -> String {
 
 fn main() {
     let john = Person {
-        first: String::from("James"),
+        first: String::from("Tim"),
         middle: Some(String::from("Oliver")),
-        last: String::from("Smith"),
+        last: String::from("Kane"),
     };
-    assert_eq!(build_full_name(&john), "James Oliver Smith");
+    assert_eq!(build_full_name(&john), "Tim Oliver Kane");
 
     let alice = Person {
         first: String::from("Alice"),
         middle: None,
-        last: String::from("Stevens"),
+        last: String::from("Wonder"),
     };
-    assert_eq!(build_full_name(&alice), "Alice Stevens");
+    assert_eq!(build_full_name(&alice), "Alice Wonder");
 
     let bob = Person {
         first: String::from("Robert"),
         middle: Some(String::from("Murdock")),
-        last: String::from("Jones"),
+        last: String::from("Junior"),
     };
-    assert_eq!(build_full_name(&bob), "Robert Murdock Jones");
+    assert_eq!(build_full_name(&bob), "Robert Murdock Junior");
+}
+
+//// Test: return each single name and a vector of all single names
+fn copy_and_return<'a>(vector: &'a mut Vec<String>, value: &'a str) -> &'a String {
+    vector.push(String::from(value));
+    vector.get(vector.len() - 1).unwrap()
+}
+
+fn main() {
+    let name1 = "Joe";
+    let name2 = "Chris";
+    let name3 = "Anne";
+
+    let mut names = Vec::new();
+
+    assert_eq!("Joe", copy_and_return(&mut names, &name1));
+    assert_eq!("Chris", copy_and_return(&mut names, &name2));
+    assert_eq!("Anne", copy_and_return(&mut names, &name3));
+
+    assert_eq!(
+        names,
+        vec!["Joe".to_string(), "Chris".to_string(), "Anne".to_string()]
+    )
 }
