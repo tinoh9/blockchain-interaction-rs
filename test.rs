@@ -1596,3 +1596,32 @@ fn main() {
     assert_eq!(count_letters_and_numbers("711 Maple Street"), (11, 3));
     assert_eq!(count_letters_and_numbers("4 Privet Drive"), (11, 1));
 }
+
+//// Compare the simple x and y integers
+use std::fmt;
+
+#[derive(Debug, PartialEq)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+impl fmt::Display for Point {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.x, self.y)
+    }
+}
+
+fn main() {
+    let p1 = Point { x: 1, y: 2 };
+    let p2 = Point { x: 4, y: -3 };
+
+    println!("{}", p1);
+    println!("{:?}", p1);
+
+    if p1 == p2 {
+        println!("equal!");
+    } else {
+        println!("not equal!");
+    }
+}
